@@ -1,0 +1,26 @@
+                 .data                          #Declaração de variáveis
+msg:             .asciiz "Digite um número:"    #Variável string
+numero:          .word 1                        #Variável int
+resultado:       .word 1                        #Variável int
+
+
+               
+
+
+                 .text
+main:            li $v0, 4                      #Imprime string
+                 la $a0, msg
+                 syscall
+
+                 li $v0, 5                      #Lê o inteiro	
+                 syscall
+
+                 sw $v0, numero                 #Joga o valor lido pra variável
+                 add $t0, $v0, $v0              #Dobra o valor e joga no temporário 0
+                 sw $t0, resultado              #Joga o valor do temporário na variável
+
+                 li $v0, 1
+                 move $a0, $t0                  #Imprime o inteiro
+                 syscall
+
+                 jr $ra
